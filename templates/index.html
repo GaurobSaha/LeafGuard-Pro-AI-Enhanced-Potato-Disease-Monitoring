@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Disease Classifier</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Upload an Image for Classification</h2>
+        <input type="file" id="imageInput">
+        <button onclick="uploadImage()">Predict</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function uploadImage() {
+            let input = document.getElementById("imageInput").files[0];
+            let formData = new FormData();
+            formData.append("file", input);
+
+            fetch("/predict/", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerHTML = "<h3>Prediction: " + data.prediction + "</h3>";
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>

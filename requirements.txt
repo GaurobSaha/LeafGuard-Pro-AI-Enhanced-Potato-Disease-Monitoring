@@ -1,0 +1,10 @@
+tensorflow
+matplotlib
+ipython
+numpy
+pandas
+fastapi 
+uvicorn 
+pillow 
+jinja2
+python-multipart
